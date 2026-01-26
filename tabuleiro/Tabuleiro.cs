@@ -2,7 +2,7 @@ using System;
 
 namespace tabuleiro;
 
-public class Tabuleiro
+class Tabuleiro
 {
     public int Linhas { get; set; }
     public int Colunas { get; set; }
@@ -14,6 +14,11 @@ public class Tabuleiro
         Linhas = linhas;
         Colunas = colunas;
         Pecas = new Peca[linhas, colunas];
+    }
+
+    public Peca peca(int linha, int coluna)
+    {
+        return Pecas[linha, coluna];
     }
 
 }
