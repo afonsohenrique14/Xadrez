@@ -36,6 +36,20 @@ class Tabuleiro
         peca.Posicao = posicao;
     }
 
+    public Peca? retirarPeça(Posicao posicao)
+    {
+        if (peca(posicao) == null)
+        {
+            return null;
+        }
+
+        Peca aux = peca(posicao);
+        aux.Posicao = null;
+        Pecas[posicao.Linha, posicao.Coluna] = null;
+        return aux;
+
+    }
+
     public bool existePeca(Posicao posicao)
     {
         validarPosicao(posicao);
