@@ -7,9 +7,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
-  <ItemGroup>
+  <!-- <ItemGroup>
     <Folder Include="tabuleiro\" />
     <Folder Include="xadrez\" />
-  </ItemGroup>
+  </ItemGroup> -->
 
 </Project>

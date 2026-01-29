@@ -10,14 +10,14 @@ class PartidaXadrez
     private int turno;
     private Cor jogadorAtual;
 
-    public bool termninada { get; private set; }
+    public bool terminada { get; private set; }
 
     public PartidaXadrez()
     {
         tab = new Tabuleiro(8, 8);
         turno = 1;
         jogadorAtual = Cor.Branca;
-        termninada = false;
+        terminada = false;
         colocarPecas();
     }
 
