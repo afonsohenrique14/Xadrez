@@ -5,6 +5,50 @@ namespace tabuleiro;
 
 class Tela
 {
+    public static void imprimirPartida(PartidaXadrez partida)
+    {
+        Tela.imprimirTabuleiro(partida.Tab);
+
+        System.Console.WriteLine();
+        imprimirPecasCapturadas(partida);
+        Console.WriteLine("Turno: " + partida.Turno);
+        ConsoleColor aux = Console.ForegroundColor;
+        if (partida.JogadorAtual == Cor.Preta)
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+        }
+        Console.WriteLine("Jogador Atual: " + partida.JogadorAtual);
+        Console.ForegroundColor = aux;
+        System.Console.WriteLine();
+    }
+
+    public static void imprimirPecasCapturadas(PartidaXadrez partida)
+    {
+        System.Console.WriteLine("Pecas capturadas: ");
+        System.Console.WriteLine();
+        System.Console.Write("Brancas: ");
+        imprimirConjunto(partida.pecasCapturadas(Cor.Branca));
+        System.Console.WriteLine();
+
+        ConsoleColor aux = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Yellow;
+        System.Console.Write("Pretas: ");
+        imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
+        System.Console.WriteLine();
+        
+        Console.ForegroundColor = aux;
+    }
+
+    public static void imprimirConjunto(HashSet<Peca> conjunto)
+    {
+        Console.Write("[");
+        foreach (Peca x in conjunto)
+        {
+            Console.Write(x + " ");
+        }
+        Console.WriteLine("]");
+    }
+
     public static void imprimirTabuleiro(Tabuleiro tab)
     {
         for (int i = 0; i < tab.Linhas; i++)
