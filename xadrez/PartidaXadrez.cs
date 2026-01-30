@@ -33,11 +33,11 @@ class PartidaXadrez
 
     public Peca? executaMovimento(Posicao origem, Posicao destino)
     {
-        Peca? p = Tab.retirarPeça(origem);
+        Peca p = Tab.retirarPeça(origem)!;
 
         p.incrementarQteMovimentos();
 
-        Peca? pecaCapturada = Tab.retirarPeça(destino);
+        Peca pecaCapturada = Tab.retirarPeça(destino)!;
 
         if (pecaCapturada != null)
         {
@@ -50,7 +50,7 @@ class PartidaXadrez
     }
     public void desfazMovimento(Posicao origem, Posicao destino, Peca? pecaCapturada)
     {
-        Peca? p = Tab.retirarPeça(destino);
+        Peca p = Tab.retirarPeça(destino)!;
 
         p.decrementarQteMovimentos();
 
