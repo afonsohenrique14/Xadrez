@@ -15,25 +15,42 @@ namespace Xadrez
 
                 while(!partida.terminada)
                 {
-                    if (!Console.IsOutputRedirected)
+                    try
+                    {
+                        
+                        
                         Console.Clear();
-                    Tela.imprimirTabuleiro(partida.tab);
-                    System.Console.WriteLine();
-                    Console.Write("Origem: ");
-                    Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                        Tela.imprimirTabuleiro(partida.Tab);
+                        System.Console.WriteLine();
+                        Console.WriteLine("Turno: " + partida.Turno);
+                        Console.WriteLine("Jogador Atual: " + partida.JogadorAtual);
 
-                    bool[,] posicoesPossiveis = partida.tab.peca(origem).movimentosPossiveis();
+                        System.Console.WriteLine();
+                        Console.Write("Origem: ");
+                        Posicao origem = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDeOrigem(origem);
+
+                        bool[,] posicoesPossiveis = partida.Tab.peca(origem).movimentosPossiveis();
 
 
-                    if (!Console.IsOutputRedirected)
+                        
                         Console.Clear();
-                    Tela.imprimirTabuleiro(partida.tab, posicoesPossiveis);
+                        Tela.imprimirTabuleiro(partida.Tab, posicoesPossiveis);
 
-                    System.Console.WriteLine();
-                    Console.Write("Destino: ");
-                    Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                        System.Console.WriteLine();
+                        Console.Write("Destino: ");
+                        Posicao destino = Tela.lerPosicaoXadrez().toPosicao();
+                        partida.validarPosicaoDestino(origem, destino);
 
-                    partida.executaMovimento(origem, destino);
+                        partida.realizaJogada(origem, destino);
+                    }
+                    catch (TabuleiroException e)
+                    {
+                        Console.WriteLine(e.Message);
+                        System.Console.WriteLine("Pressione Enter para continuar...");
+                        Console.ReadLine();
+                        
+                    }
 
                 }
             }
