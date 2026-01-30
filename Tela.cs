@@ -20,6 +20,14 @@ class Tela
         Console.WriteLine("Jogador Atual: " + partida.JogadorAtual);
         Console.ForegroundColor = aux;
         System.Console.WriteLine();
+
+        if (partida.Xeque)
+        {
+            ConsoleColor aux2 = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine("XEQUE!");
+            Console.ForegroundColor = aux2;
+        }
     }
 
     public static void imprimirPecasCapturadas(PartidaXadrez partida)

@@ -13,13 +13,16 @@ namespace Xadrez
                 
                 PartidaXadrez partida = new PartidaXadrez();
 
-                while(!partida.terminada)
+                while(!partida.Terminada)
                 {
                     try
                     {
                         
                         
-                        Console.Clear();
+                        if (!Console.IsOutputRedirected)
+                            Console.Clear();
+                        
+
                         Tela.imprimirPartida(partida);
 
 
@@ -32,7 +35,8 @@ namespace Xadrez
 
 
                         
-                        Console.Clear();
+                        if (!Console.IsOutputRedirected)
+                            Console.Clear();
                         Tela.imprimirTabuleiro(partida.Tab, posicoesPossiveis);
 
                         System.Console.WriteLine();

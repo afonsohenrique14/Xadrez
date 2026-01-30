@@ -25,6 +25,9 @@ class Torre : Peca
     {
         bool[,] mat = new bool[Tab.Linhas, Tab.Colunas];
 
+        if (Posicao == null)
+            return mat;
+
         Posicao pos = new Posicao(0, 0);
 
         //acima
