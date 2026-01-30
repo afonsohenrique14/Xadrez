@@ -12,22 +12,34 @@ class Tela
         System.Console.WriteLine();
         imprimirPecasCapturadas(partida);
         Console.WriteLine("Turno: " + partida.Turno);
-        ConsoleColor aux = Console.ForegroundColor;
-        if (partida.JogadorAtual == Cor.Preta)
-        {
-            Console.ForegroundColor = ConsoleColor.Yellow;
-        }
-        Console.WriteLine("Jogador Atual: " + partida.JogadorAtual);
-        Console.ForegroundColor = aux;
-        System.Console.WriteLine();
 
-        if (partida.Xeque)
+        if (!partida.Terminada)
         {
-            ConsoleColor aux2 = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("XEQUE!");
-            Console.ForegroundColor = aux2;
+
+            ConsoleColor aux = Console.ForegroundColor;
+            if (partida.JogadorAtual == Cor.Preta)
+            {
+                Console.ForegroundColor = ConsoleColor.Yellow;
+            }
+            Console.WriteLine("Jogador Atual: " + partida.JogadorAtual);
+            Console.ForegroundColor = aux;
+            System.Console.WriteLine();
+
+            if (partida.Xeque)
+            {
+                ConsoleColor aux2 = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.WriteLine("XEQUE!");
+                Console.ForegroundColor = aux2;
+            }
         }
+        else
+        {
+            System.Console.WriteLine("XEQUE MATE");
+            System.Console.WriteLine("Vencedor: " + partida.JogadorAtual);
+        }
+
+
     }
 
     public static void imprimirPecasCapturadas(PartidaXadrez partida)
@@ -43,7 +55,7 @@ class Tela
         System.Console.Write("Pretas: ");
         imprimirConjunto(partida.pecasCapturadas(Cor.Preta));
         System.Console.WriteLine();
-        
+
         Console.ForegroundColor = aux;
     }
 
@@ -113,7 +125,9 @@ class Tela
         if (peca == null)
         {
             Console.Write("- ");
-        }else{
+        }
+        else
+        {
 
             if (peca.Cor == Cor.Branca)
             {

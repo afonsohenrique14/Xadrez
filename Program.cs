@@ -53,8 +53,10 @@ namespace Xadrez
                         Console.ReadLine();
                         
                     }
-
                 }
+                if (!Console.IsOutputRedirected)
+                    Console.Clear();
+                Tela.imprimirPartida(partida);
             }
             catch (TabuleiroException e)
             {
