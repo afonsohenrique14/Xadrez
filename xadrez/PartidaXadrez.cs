@@ -17,7 +17,7 @@ class PartidaXadrez
 
     public bool Xeque { get; private set; }
 
-    public Peca VulneravelEnPassant { get; private set; }
+    public Peca? VulneravelEnPassant { get; private set; }
 
 
 
@@ -147,7 +147,7 @@ class PartidaXadrez
                     posP = new Posicao(4, destino.Coluna);
                 }
                 Tab.colocarPeça(Peao, posP);
-                Capturadas.Remove(pecaCapturada);
+                Capturadas.Remove(pecaCapturada!);
             }
 
         }
@@ -164,6 +164,23 @@ class PartidaXadrez
         {
             desfazMovimento(origem, destino, pecaCapturada);
             throw new TabuleiroException("Você não pode se colocar ou permanecer em xeque!");
+        }
+        
+        Peca p = Tab.peca(destino);
+
+        // #jogada especial promocao
+
+        if(p is Peao)
+        {
+            if (p.Cor == Cor.Branca && destino.Linha == 0 || (p.Cor == Cor.Preta && destino.Linha == 7) )
+            {
+                p = Tab.retirarPeça(destino)!;
+                Pecas.Remove(p);
+                Peca dama = new Dama(p.Cor, Tab);
+                Tab.colocarPeça(dama, destino);
+                Pecas.Add(dama);
+
+            } 
         }
 
         if (estaEmXeque(Adversaria(JogadorAtual)))
@@ -184,7 +201,7 @@ class PartidaXadrez
             mudaJogador();
         }
 
-        Peca p = Tab.peca(destino);
+        
 
         // # jogada especial en passant
 
