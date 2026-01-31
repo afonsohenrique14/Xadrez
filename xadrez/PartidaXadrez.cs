@@ -240,6 +240,7 @@ class PartidaXadrez
         colocarNovaPeca('c', 1, new Torre(Cor.Branca, Tab));
         colocarNovaPeca('d', 1, new Rei(Cor.Branca, Tab));  
         colocarNovaPeca('h', 7, new Torre(Cor.Branca, Tab));
+        colocarNovaPeca('e', 1, new Bispo(Cor.Branca, Tab));
 
 
         colocarNovaPeca('a', 8, new Rei(Cor.Preta, Tab));
