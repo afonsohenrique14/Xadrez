@@ -6,8 +6,10 @@ namespace xadrez;
 class Peao : Peca
 {
 
-    public Peao(Cor Cor, Tabuleiro Tab) : base(Cor, Tab)
+    private PartidaXadrez Partida;
+    public Peao(Cor Cor, Tabuleiro Tab, PartidaXadrez partida) : base(Cor, Tab)
     {
+        this.Partida = partida;
     }
 
     public override string ToString()
@@ -68,6 +70,22 @@ class Peao : Peca
                 mat[pos.Linha, pos.Coluna] = true;
             }
 
+            // # jogada especial en passant
+
+            if (Posicao.Linha == 3)
+            {
+                Posicao esquerda = new Posicao(Posicao.Linha, Posicao.Coluna - 1);
+                if(Tab.posicaoValida(esquerda) && podeCapturar(esquerda) && Tab.peca(esquerda) == Partida.VulneravelEnPassant)
+                {
+                    mat[esquerda.Linha - 1, esquerda.Coluna] = true;
+                }
+
+                Posicao direita = new Posicao(Posicao.Linha, Posicao.Coluna + 1);
+                if(Tab.posicaoValida(direita) && podeCapturar(direita) && Tab.peca(direita) == Partida.VulneravelEnPassant)
+                {
+                    mat[direita.Linha - 1, direita.Coluna] = true;
+                }
+            }
 
         }
         else 
@@ -99,6 +117,23 @@ class Peao : Peca
             if (Tab.posicaoValida(pos) && podeCapturar(pos) && Cor == Cor.Preta)
             {
                 mat[pos.Linha, pos.Coluna] = true;
+            }
+
+            // # jogada especial en passant
+
+            if (Posicao.Linha == 4)
+            {
+                Posicao esquerda = new Posicao(Posicao.Linha, Posicao.Coluna - 1);
+                if(Tab.posicaoValida(esquerda) && podeCapturar(esquerda) && Tab.peca(esquerda) == Partida.VulneravelEnPassant)
+                {
+                    mat[esquerda.Linha + 1, esquerda.Coluna] = true;
+                }
+
+                Posicao direita = new Posicao(Posicao.Linha, Posicao.Coluna + 1);
+                if(Tab.posicaoValida(direita) && podeCapturar(direita) && Tab.peca(direita) == Partida.VulneravelEnPassant)
+                {
+                    mat[direita.Linha + 1, direita.Coluna] = true;
+                }
             }
 
         }
